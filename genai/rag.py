@@ -50,6 +50,13 @@ while True:
     # generate an answer based on given user query and retrieved context information
     context_text = "\n\n".join([doc.page_content for doc, _score in docs_chroma])
     # you can use a prompt template
+    PROMPT_TEMPLATE = """
+Answer the question: {question} using whatever resources you have.
+Include any related information from {context} as part of your answer.
+Provide a detailed answer.
+Don’t justify your answers.
+"""
+
 
     # load retrieved context and user query in the prompt template
     prompt_template = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
